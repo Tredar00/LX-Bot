@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #eef;
+  text-align: center;
+  padding: 40px;
+}
+h1 {
+  color: #333;
+}
+button {
+  font-size: 20px;
+  padding: 10px 30px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+}
+#signalBox {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}
