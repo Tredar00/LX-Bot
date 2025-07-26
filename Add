@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bot 55 - EUR/USD Signal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📈 Bot 55 Signal</h1>
+  <button onclick="getSignal()">🔁 Start Operation</button>
+  <div id="signalBox">Signal loading...</div>
+  <script src="script.js"></script>
+</body>
+</html>
