@@ -1,0 +1,30 @@
+async function getSignal() {
+  const res = await fetch("https://api.exchangerate.host/timeseries?start_date=2025-07-01&end_date=2025-07-25&base=EUR&symbols=USD");
+  const data = await res.json();
+  const closes = Object.values(data.rates).map(day => day.USD);
+
+  const ma = avg(closes.slice(-5));
+  const rsi = calcRSI(closes);
+  const current = closes[closes.length - 1];
+
+  let signal = "⏸ NO TRADE";
+  if (rsi < 30 && current < ma) signal = "🟢 BUY (UP)";
+  else if (rsi > 70 && current > ma) signal = "🔴 SELL (DOWN)";
+
+  document.getElementById("signalBox").innerText = signal;
+}
+
+function avg(arr) {
+  return arr.reduce((a, b) => a + b) / arr.length;
+}
+
+function calcRSI(closes, period = 14) {
+  let gains = 0, losses = 0;
+  for (let i = 1; i <= period; i++) {
+    const diff = closes[closes.length - i] - closes[closes.length - i - 1];
+    if (diff >= 0) gains += diff;
+    else losses -= diff;
+  }
+  const rs = gains / (losses || 1);
+  return 100 - 100 / (1 + rs);
+}
